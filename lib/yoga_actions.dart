@@ -1,6 +1,22 @@
 import 'models/yoga_action.dart';
 
 class YogaActions {
+  static final YogaAction startPreparation = YogaAction(
+    name: 'Prepare yourself',
+    text: 'make yourself comfortable and prepare yourself...',
+    defaultDuration: 10,
+    image: 'assets/images/mountain.jpg',
+    sound: 'assets/mountain_pose_sound.mp3',
+  );
+
+  static final YogaAction endCooldown = YogaAction(
+    name: 'Namaste',
+    text: 'Bring your hands to your heart, lower your gaze...',
+    defaultDuration: 10,
+    image: 'assets/images/namaste.jpg',
+    sound: 'assets/namaste_sound.mp3',
+  );
+
   static final YogaAction mountain = YogaAction(
     name: 'Mountain Pose',
     text: 'Stand tall with your feet together and...',
@@ -77,6 +93,14 @@ class YogaActions {
     name: 'Camel Pose',
     text: 'Kneel on the floor and place your...',
     defaultDuration: 6,
+    image: 'assets/images/camel.jpg',
+    sound: 'assets/camel_pose_sound.mp3',
+  );
+
+  static final YogaAction allFoursPose = YogaAction(
+    name: 'All-Fours Pose',
+    text: 'Kneel on all fours and make the back straight ...',
+    defaultDuration: 13,
     image: 'assets/images/camel.jpg',
     sound: 'assets/camel_pose_sound.mp3',
   );

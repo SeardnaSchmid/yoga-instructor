@@ -49,7 +49,7 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(widget.pose.pose.image),
+                image: AssetImage(widget.pose.action.image),
                 fit: BoxFit.cover,
               ),
             ),
@@ -61,7 +61,7 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.pose.pose.name,
+                  widget.pose.action.name,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 24.0,
@@ -70,7 +70,7 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
                 ),
                 const SizedBox(height: 8.0),
                 Text(
-                  widget.pose.pose.text,
+                  widget.pose.action.text,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,
