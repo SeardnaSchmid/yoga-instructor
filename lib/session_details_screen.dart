@@ -6,7 +6,7 @@ import 'models/yoga_session.dart';
 class SessionDetailsScreen extends StatelessWidget {
   final Session session;
 
-  SessionDetailsScreen({required this.session});
+  const SessionDetailsScreen({super.key, required this.session});
 
   @override
   Widget build(BuildContext context) {

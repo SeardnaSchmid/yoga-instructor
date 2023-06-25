@@ -1,25 +1,12 @@
+import 'yoga_action.dart';
+
 class YogaPose {
-  final String name;
-  final String text;
+  final YogaAction pose;
   final int duration;
-  final String image;
-  final String sound;
 
   YogaPose({
-    required this.name,
-    required this.text,
-    required this.duration,
-    required this.image,
-    required this.sound,
-  });
-
-  factory YogaPose.fromJson(Map<String, dynamic> json) {
-    return YogaPose(
-      name: json['name'],
-      text: json['text'],
-      duration: json['duration'],
-      image: json['image'],
-      sound: json['sound'],
-    );
-  }
+    required this.pose,
+    int? duration,
+  })  : assert(duration == null || duration >= 0),
+        duration = duration ?? pose.defaultDuration;
 }
