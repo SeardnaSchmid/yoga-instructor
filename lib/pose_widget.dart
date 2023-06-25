@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:yoga_instructor/yoga_pose.dart';
+import 'package:yoga_instructor/models/yoga_pose.dart';
 
 class PoseWidget extends StatefulWidget {
   final YogaPose pose;
@@ -12,10 +12,10 @@ class PoseWidget extends StatefulWidget {
   });
 
   @override
-  _PoseWidgetState createState() => _PoseWidgetState();
+  PoseWidgetState createState() => PoseWidgetState();
 }
 
-class _PoseWidgetState extends State<PoseWidget> {
+class PoseWidgetState extends State<PoseWidget> {
   late CountDownController _countDownController;
 
   @override
@@ -88,7 +88,8 @@ class _PoseWidgetState extends State<PoseWidget> {
                   controller: _countDownController,
                   width: 200,
                   height: 200,
-                  fillColor: Colors.transparent,
+                  fillColor: Colors.grey,
+                  ringColor: Colors.blueAccent,
                   backgroundColor: Colors.transparent,
                   strokeWidth: 10.0,
                   textStyle: const TextStyle(
@@ -98,11 +99,6 @@ class _PoseWidgetState extends State<PoseWidget> {
                   ),
                   isReverse: true,
                   onComplete: handleTimerCompletion,
-                  ringColor: Colors.red,
-                ),
-                ElevatedButton(
-                  onPressed: resetTimer,
-                  child: Text('Reset Timer'),
                 ),
               ],
             ),

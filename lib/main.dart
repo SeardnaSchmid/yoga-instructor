@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:yoga_instructor/yoga_poses.dart';
 
-import 'yoga_pose.dart';
-import 'yoga_session.dart';
+import 'models/yoga_session.dart';
 import 'session_list_screen.dart';
 
 void main() {
@@ -9,40 +9,27 @@ void main() {
 }
 
 class ExampleSessions {
-  static final YogaPose pose1 = YogaPose(
-    name: 'Mountain Pose',
-    text: 'Stand tall with your feet together and...',
-    duration: 5,
-    image: 'assets/images/mountain.jpg',
-    sound: 'assets/mountain_pose_sound.mp3',
-  );
-
-  static final YogaPose pose2 = YogaPose(
-    name: 'Downward Facing Dog',
-    text: 'Start on your hands and knees...',
-    duration: 3,
-    image: 'assets/images/DownwardDog.jpg',
-    sound: 'assets/downward_facing_dog_sound.mp3',
-  );
-
-  static final YogaPose pose3 = YogaPose(
-    name: 'Child\'s Pose',
-    text: 'Sit back on your heels and rest your...',
-    duration: 4,
-    image: 'assets/images/child.jpg',
-    sound: 'assets/child_pose_sound.mp3',
-  );
-
   static Session session1 = Session(
     name: 'Morning Stretch',
     description: 'A gentle yoga session to wake up your body and mind.',
-    poses: [pose1, pose2, pose3],
+    poses: [
+      YogaPoses.childsPose,
+      YogaPoses.mountain,
+      YogaPoses.downwardFacingDog
+    ],
   );
 
   static Session session2 = Session(
     name: 'Evening Relaxation',
     description: 'A calming yoga session to unwind and relax before bed.',
-    poses: [pose3, pose1, pose2],
+    poses: [
+      YogaPoses.childsPose,
+      YogaPoses.mountain,
+      YogaPoses.downwardFacingDog,
+      YogaPoses.childsPose,
+      YogaPoses.mountain,
+      YogaPoses.downwardFacingDog
+    ],
   );
 }
 
@@ -56,7 +43,8 @@ class YogaWorkoutApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: SessionListScreen(sessions: [ExampleSessions.session1, ExampleSessions.session2]),
+      home: SessionListScreen(
+          sessions: [ExampleSessions.session1, ExampleSessions.session2]),
     );
   }
 }

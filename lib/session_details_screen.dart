@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'session_screen.dart';
-import 'yoga_session.dart';
+import 'models/yoga_session.dart';
 
 class SessionDetailsScreen extends StatelessWidget {
   final Session session;
