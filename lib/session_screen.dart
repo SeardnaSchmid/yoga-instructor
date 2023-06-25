@@ -36,7 +36,7 @@ class SessionScreenState extends State<SessionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(currentPose.pose.name),
+        title: Text(currentPose.action.name),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(8.0),
           child: LinearProgressIndicator(

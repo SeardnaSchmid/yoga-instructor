@@ -1,12 +1,10 @@
 import 'yoga_action.dart';
 
 class YogaPose {
-  final YogaAction pose;
+  final YogaAction action;
   final int duration;
 
-  YogaPose({
-    required this.pose,
-    int? duration,
-  })  : assert(duration == null || duration >= 0),
-        duration = duration ?? pose.defaultDuration;
+  YogaPose(this.action, {int? duration})
+      : assert(duration == null || duration >= 0),
+        duration = duration ?? action.defaultDuration;
 }
