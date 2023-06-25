@@ -1,4 +1,4 @@
-import 'package:yoga_instructor/models/yoga_pose.dart';
+import 'yoga_pose.dart';
 
 class Session {
   final String name;

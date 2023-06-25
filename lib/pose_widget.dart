@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:yoga_instructor/models/yoga_pose.dart';
 
-class PoseWidget extends StatefulWidget {
+import 'models/yoga_pose.dart';
+
+class YogaPoseWidget extends StatefulWidget {
   final YogaPose pose;
   final VoidCallback onNextPose;
 
-  PoseWidget({
+  const YogaPoseWidget({
+    super.key,
     required this.pose,
     required this.onNextPose,
   });
 
   @override
-  PoseWidgetState createState() => PoseWidgetState();
+  YogaPoseWidgetState createState() => YogaPoseWidgetState();
 }
 
-class PoseWidgetState extends State<PoseWidget> {
+class YogaPoseWidgetState extends State<YogaPoseWidget> {
   late CountDownController _countDownController;
 
   @override
@@ -47,7 +49,7 @@ class PoseWidgetState extends State<PoseWidget> {
           Container(
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(widget.pose.image),
+                image: AssetImage(widget.pose.pose.image),
                 fit: BoxFit.cover,
               ),
             ),
@@ -59,7 +61,7 @@ class PoseWidgetState extends State<PoseWidget> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  widget.pose.name,
+                  widget.pose.pose.name,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 24.0,
@@ -68,7 +70,7 @@ class PoseWidgetState extends State<PoseWidget> {
                 ),
                 const SizedBox(height: 8.0),
                 Text(
-                  widget.pose.text,
+                  widget.pose.pose.text,
                   style: const TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_instructor/yoga_poses.dart';
 
+import 'models/yoga_pose.dart';
 import 'models/yoga_session.dart';
 import 'session_list_screen.dart';
 
@@ -13,22 +14,10 @@ class ExampleSessions {
     name: 'Morning Stretch',
     description: 'A gentle yoga session to wake up your body and mind.',
     poses: [
-      YogaPoses.childsPose,
-      YogaPoses.mountain,
-      YogaPoses.downwardFacingDog
-    ],
-  );
-
-  static Session session2 = Session(
-    name: 'Evening Relaxation',
-    description: 'A calming yoga session to unwind and relax before bed.',
-    poses: [
-      YogaPoses.childsPose,
-      YogaPoses.mountain,
-      YogaPoses.downwardFacingDog,
-      YogaPoses.childsPose,
-      YogaPoses.mountain,
-      YogaPoses.downwardFacingDog
+      YogaPose(pose: YogaActions.childsPose,duration: 4),
+      YogaPose(pose: YogaActions.childsPose,duration: 4),
+      YogaPose(pose: YogaActions.childsPose,duration: 4),
+      YogaPose(pose: YogaActions.childsPose,duration: 4),
     ],
   );
 }
@@ -44,7 +33,7 @@ class YogaWorkoutApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: SessionListScreen(
-          sessions: [ExampleSessions.session1, ExampleSessions.session2]),
+          sessions: [ExampleSessions.session1]),
     );
   }
 }

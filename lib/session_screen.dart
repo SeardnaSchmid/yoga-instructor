@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_instructor/pose_widget.dart';
-import 'package:yoga_instructor/models/yoga_pose.dart';
 
+import 'models/yoga_pose.dart';
 import 'models/yoga_session.dart';
 
 class SessionScreen extends StatefulWidget {
   final Session session;
 
-  SessionScreen({required this.session});
+  const SessionScreen({super.key, required this.session});
 
   @override
   SessionScreenState createState() => SessionScreenState();
@@ -31,23 +31,23 @@ class SessionScreenState extends State<SessionScreen> {
   @override
   Widget build(BuildContext context) {
     YogaPose currentPose = widget.session.poses[currentPoseIndex];
-    int totalPoses = widget.session.poses.length;
+    int totalPoses = widget.session.poses.length + 1;
     int posesCompleted = currentPoseIndex + 1;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(currentPose.name),
+        title: Text(currentPose.pose.name),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(8.0),
+          preferredSize: const Size.fromHeight(8.0),
           child: LinearProgressIndicator(
             value: posesCompleted / totalPoses,
             minHeight: 16.0,
             backgroundColor: Colors.grey[300],
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
         ),
       ),
-      body: PoseWidget(
+      body: YogaPoseWidget(
         pose: currentPose,
         onNextPose: goToNextPose,
       ),
