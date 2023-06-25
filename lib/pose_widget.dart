@@ -1,113 +1,205 @@
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:yoga_instructor/yoga_pose.dart';
 
-class PoseWidget extends StatefulWidget {
+import 'models/yoga_action.dart';
+import 'models/yoga_pose.dart';
+import 'yoga_actions.dart';
+
+class YogaPoseWidget extends StatefulWidget {
   final YogaPose pose;
   final VoidCallback onNextPose;
 
-  PoseWidget({
+  const YogaPoseWidget({
+    Key? key,
     required this.pose,
     required this.onNextPose,
-  });
+  }) : super(key: key);
 
   @override
-  _PoseWidgetState createState() => _PoseWidgetState();
+  YogaPoseWidgetState createState() => YogaPoseWidgetState();
 }
 
-class _PoseWidgetState extends State<PoseWidget> {
+class YogaPoseWidgetState extends State<YogaPoseWidget> {
   late CountDownController _countDownController;
+  bool isTimerRunning = true;
+  late String stopButtonText;
 
   @override
   void initState() {
     super.initState();
     _countDownController = CountDownController();
     startTimer();
+    stopButtonText = isTimerRunning ? 'Stop' : 'Continue';
+  }
+
+  @override
+  void didUpdateWidget(YogaPoseWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.pose != oldWidget.pose) {
+      resetTimer();
+    }
   }
 
   void startTimer() {
-    _countDownController.restart();
+    _countDownController.restart(duration: widget.pose.duration);
   }
 
   void handleTimerCompletion() {
     _countDownController.restart();
-
     widget.onNextPose();
   }
 
   void resetTimer() {
-    _countDownController.restart();
+    _countDownController.restart(duration: widget.pose.duration);
+  }
+
+  void toggleTimer() {
+    setState(() {
+      if (isTimerRunning) {
+        _countDownController.pause();
+      } else {
+        _countDownController.resume();
+      }
+      isTimerRunning = !isTimerRunning;
+      stopButtonText = isTimerRunning ? 'Stop' : 'Continue';
+    });
+  }
+
+  void skipPose() {
+    resetTimer();
+    widget.onNextPose();
   }
 
   @override
   Widget build(BuildContext context) {
+    YogaAction currentAction = YogaActions.getAction(widget.pose.actionId);
+
     return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(widget.pose.image),
-                fit: BoxFit.cover,
+      body: Container(
+        color: Colors.grey, // Set the background color of the widget
+        child: Center(
+          child: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(currentAction.image),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
-            ),
+              Positioned(
+                top: 20.0,
+                left: 20.0,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Text(
+                        currentAction.name,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 24.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 8.0),
+                    Center(
+                      child: Column(
+                        children: [
+                          Text(
+                            currentAction.text,
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.0,
+                            ),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            currentAction.defaultDuration.toString(),
+                            textAlign: TextAlign.center,
+                          ),
+                          Text(
+                            widget.pose.duration.toString(),
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Positioned(
+                top: MediaQuery.of(context).size.height * 0.6,
+                // Adjust this value to move the countdown timer down
+                left: 0,
+                right: 0,
+                child: Column(
+                  children: [
+                    CircularCountDownTimer(
+                      duration: widget.pose.duration ?? currentAction.defaultDuration,
+                      controller: _countDownController,
+                      width: 200,
+                      height: 200,
+                      fillColor: Colors.grey,
+                      ringColor: Colors.blueAccent,
+                      backgroundColor: Colors.transparent,
+                      strokeWidth: 10.0,
+                      textStyle: const TextStyle(
+                        fontSize: 48.0,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      isReverse: true,
+                      onComplete: handleTimerCompletion,
+                    ),
+                    const SizedBox(height: 16.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: toggleTimer,
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            minimumSize: const Size(140.0, 60.0),
+                            padding: const EdgeInsets.all(12.0),
+                          ),
+                          child: Text(
+                            stopButtonText,
+                            style: const TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 16.0),
+                        ElevatedButton(
+                          onPressed: skipPose,
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                            ),
+                            minimumSize: const Size(140.0, 60.0),
+                            padding: const EdgeInsets.all(12.0),
+                          ),
+                          child: const Text(
+                            'Skip',
+                            style: TextStyle(
+                              fontSize: 18.0,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-          Positioned(
-            top: 20.0,
-            left: 20.0,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.pose.name,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 8.0),
-                Text(
-                  widget.pose.text,
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Positioned(
-            top: MediaQuery.of(context).size.height * 0.5,
-            left: 0,
-            right: 0,
-            child: Column(
-              children: [
-                CircularCountDownTimer(
-                  duration: widget.pose.duration,
-                  controller: _countDownController,
-                  width: 200,
-                  height: 200,
-                  fillColor: Colors.transparent,
-                  backgroundColor: Colors.transparent,
-                  strokeWidth: 10.0,
-                  textStyle: const TextStyle(
-                    fontSize: 48.0,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  isReverse: true,
-                  onComplete: handleTimerCompletion,
-                  ringColor: Colors.red,
-                ),
-                ElevatedButton(
-                  onPressed: resetTimer,
-                  child: Text('Reset Timer'),
-                ),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
