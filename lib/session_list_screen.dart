@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'yoga_session.dart';
+import 'models/yoga_session.dart';
 
 import 'session_details_screen.dart';
 
