@@ -13,7 +13,7 @@ class ExampleSessions {
     name: 'Mountain Pose',
     text: 'Stand tall with your feet together and...',
     duration: 5,
-    image: 'assets/mountain_pose.png',
+    image: 'assets/images/mountain.jpg',
     sound: 'assets/mountain_pose_sound.mp3',
   );
 
@@ -29,7 +29,7 @@ class ExampleSessions {
     name: 'Child\'s Pose',
     text: 'Sit back on your heels and rest your...',
     duration: 4,
-    image: 'assets/child_pose.png',
+    image: 'assets/images/child.jpg',
     sound: 'assets/child_pose_sound.mp3',
   );
 

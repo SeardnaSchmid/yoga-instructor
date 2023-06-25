@@ -6,13 +6,16 @@ class PoseWidget extends StatefulWidget {
   final YogaPose pose;
   final VoidCallback onNextPose;
 
-  PoseWidget({required this.pose, required this.onNextPose});
+  PoseWidget({
+    required this.pose,
+    required this.onNextPose,
+  });
 
   @override
-  PoseWidgetState createState() => PoseWidgetState();
+  _PoseWidgetState createState() => _PoseWidgetState();
 }
 
-class PoseWidgetState extends State<PoseWidget> {
+class _PoseWidgetState extends State<PoseWidget> {
   late CountDownController _countDownController;
 
   @override
@@ -27,7 +30,13 @@ class PoseWidgetState extends State<PoseWidget> {
   }
 
   void handleTimerCompletion() {
+    _countDownController.restart();
+
     widget.onNextPose();
+  }
+
+  void resetTimer() {
+    _countDownController.restart();
   }
 
   @override
@@ -52,7 +61,7 @@ class PoseWidgetState extends State<PoseWidget> {
                 Text(
                   widget.pose.name,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 24.0,
                     fontWeight: FontWeight.bold,
                   ),
@@ -61,7 +70,7 @@ class PoseWidgetState extends State<PoseWidget> {
                 Text(
                   widget.pose.text,
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 16.0,
                   ),
                 ),
@@ -90,6 +99,10 @@ class PoseWidgetState extends State<PoseWidget> {
                   isReverse: true,
                   onComplete: handleTimerCompletion,
                   ringColor: Colors.red,
+                ),
+                ElevatedButton(
+                  onPressed: resetTimer,
+                  child: Text('Reset Timer'),
                 ),
               ],
             ),
