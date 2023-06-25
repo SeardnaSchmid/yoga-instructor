@@ -1,0 +1,51 @@
+# Flutter/Dart specific
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+build/
+.dart_tool/
+.idea/
+.vscode/
+android/.gradle/
+android/build/
+android/gradle/
+android/gradlew
+android/gradlew.bat
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/
+ios/Flutter/Debug.xcconfig
+ios/Flutter/Release.xcconfig
+ios/Runner.xcworkspace/
+ios/Flutter/App.framework
+ios/Flutter/Flutter.framework
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+*.iml
+*.log
+
+# Generated files
+*.dart.js
+*.js
+*.js.map
+*.g.dart
+
+# Android specific
+android/app/debug.keystore
+android/app/key.properties
+android/local.properties
+android/gradle.properties
+android/gradle-wrapper.jar
+android/gradle-wrapper.properties
+
+# iOS specific
+ios/Podfile.lock
+ios/Flutter/AppFrameworkInfo.plist
+ios/Runner/GeneratedPluginRegistrant.*
+
+# Miscellaneous
+*.lock
+*.swp
+*.DS_Store
