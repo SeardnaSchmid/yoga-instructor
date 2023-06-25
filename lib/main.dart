@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yoga_instructor/yoga_poses.dart';
+import 'package:yoga_instructor/yoga_actions.dart';
 
 import 'models/yoga_pose.dart';
 import 'models/yoga_session.dart';
