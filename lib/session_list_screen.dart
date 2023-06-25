@@ -10,6 +10,9 @@ class SessionListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+    print(this.sessions.toString());
     return Scaffold(
       appBar: AppBar(
         title: const Text('Yoga Sessions'),
