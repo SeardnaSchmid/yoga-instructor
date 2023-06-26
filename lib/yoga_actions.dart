@@ -5,7 +5,7 @@ class YogaActions {
     name: 'Prepare yourself',
     text: 'make yourself comfortable and prepare yourself...',
     defaultDuration: 10,
-    image: 'assets/images/mountain.jpg',
+    image: 'assets/images/prepare.jpg',
     sound: 'assets/mountain_pose_sound.mp3',
   );
 
@@ -13,7 +13,7 @@ class YogaActions {
     name: 'Namaste',
     text: 'Bring your hands to your heart, lower your gaze...',
     defaultDuration: 10,
-    image: 'assets/images/namaste.jpg',
+    image: 'assets/images/cooldown.jpg',
     sound: 'assets/namaste_sound.mp3',
   );
 
@@ -29,7 +29,7 @@ class YogaActions {
     name: 'Downward Facing Dog',
     text: 'Start on your hands and knees...',
     defaultDuration: 13,
-    image: 'assets/images/DownwardDog.jpg',
+    image: 'assets/images/downwardFacingDog.jpg',
     sound: 'assets/downward_facing_dog_sound.mp3',
   );
 
@@ -37,7 +37,7 @@ class YogaActions {
     name: 'Child\'s Pose',
     text: 'Sit back on your heels and rest your...',
     defaultDuration: 16,
-    image: 'assets/images/child.jpg',
+    image: 'assets/images/childs.jpg',
     sound: 'assets/child_pose_sound.mp3',
   );
 
@@ -85,7 +85,7 @@ class YogaActions {
     name: 'Seated Forward Bend',
     text: 'Sit on the floor with your legs...',
     defaultDuration: 5,
-    image: 'assets/images/seated_forward_bend.jpg',
+    image: 'assets/images/todo.jpg',
     sound: 'assets/seated_forward_bend_sound.mp3',
   );
 
@@ -101,7 +101,7 @@ class YogaActions {
     name: 'All-Fours Pose',
     text: 'Kneel on all fours and make the back straight ...',
     defaultDuration: 13,
-    image: 'assets/images/camel.jpg',
+    image: 'assets/images/allFours.jpg',
     sound: 'assets/camel_pose_sound.mp3',
   );
 
@@ -109,7 +109,7 @@ class YogaActions {
     name: 'Pigeon Pose',
     text: 'Start in a high plank position and...',
     defaultDuration: 4,
-    image: 'assets/images/pigeon.jpg',
+    image: 'assets/images/todo.jpg',
     sound: 'assets/pigeon_pose_sound.mp3',
   );
 
@@ -125,7 +125,7 @@ class YogaActions {
     name: 'Standing Forward Bend',
     text: 'Stand tall with your feet together and...',
     defaultDuration: 5,
-    image: 'assets/images/standing_forward_bend.jpg',
+    image: 'assets/images/todo.jpg',
     sound: 'assets/standing_forward_bend_sound.mp3',
   );
 
@@ -141,7 +141,7 @@ class YogaActions {
     name: 'Extended Triangle Pose',
     text: 'Stand with your feet wide apart...',
     defaultDuration: 5,
-    image: 'assets/images/extended_triangle.jpg',
+    image: 'assets/images/triangle.jpg',
     sound: 'assets/extended_triangle_pose_sound.mp3',
   );
 
@@ -157,7 +157,7 @@ class YogaActions {
     name: 'Simple Sit',
     text: 'Sit on the floor with your legs crossed...',
     defaultDuration: 20,
-    image: 'assets/images/simple_sit.jpg',
+    image: 'assets/images/simpleSit.jpg',
     sound: 'assets/simple_sit_sound.mp3',
   );
 
@@ -165,7 +165,7 @@ class YogaActions {
     name: 'Seated Twist to the Right',
     text: 'Sit on the floor with your legs extended...',
     defaultDuration: 20,
-    image: 'assets/images/seated_twist_right.jpg',
+    image: 'assets/images/seatedTwist.jpg',
     sound: 'assets/seated_twist_right_sound.mp3',
   );
 
@@ -173,7 +173,7 @@ class YogaActions {
     name: 'Seated Twist to the Left',
     text: 'Sit on the floor with your legs extended...',
     defaultDuration: 20,
-    image: 'assets/images/seated_twist_right.jpg',
+    image: 'assets/images/seatedTwist.jpg',
     sound: 'assets/seated_twist_right_sound.mp3',
   );
 
@@ -181,7 +181,7 @@ class YogaActions {
     name: 'Deep Lunge to the Right',
     text: 'Start in a standing position...',
     defaultDuration: 17,
-    image: 'assets/images/deep_lunge_right.jpg',
+    image: 'assets/images/deepLunge.jpg',
     sound: 'assets/deep_lunge_right_sound.mp3',
   );
 
@@ -189,7 +189,7 @@ class YogaActions {
     name: 'Deep Lunge to the Left',
     text: 'Start in a standing position...',
     defaultDuration: 17,
-    image: 'assets/images/deep_lunge_left.jpg',
+    image: 'assets/images/deepLunge.jpg',
     sound: 'assets/deep_lunge_left_sound.mp3',
   );
 
@@ -197,7 +197,7 @@ class YogaActions {
     name: 'Warrior 2 Right',
     text: 'Start in a standing position...',
     defaultDuration: 20,
-    image: 'assets/images/warrior_2_right.jpg',
+    image: 'assets/images/warrior2.jpg',
     sound: 'assets/warrior_2_right_sound.mp3',
   );
 
@@ -205,7 +205,7 @@ class YogaActions {
     name: 'Warrior 2 Left',
     text: 'Start in a standing position...',
     defaultDuration: 20,
-    image: 'assets/images/warrior_2_left.jpg',
+    image: 'assets/images/warrior2.jpg',
     sound: 'assets/warrior_2_left_sound.mp3',
   );
 
@@ -213,7 +213,7 @@ class YogaActions {
     name: 'Peaceful Warrior Right',
     text: 'Start in a standing position...',
     defaultDuration: 5,
-    image: 'assets/images/peaceful_warrior_right.jpg',
+    image: 'assets/images/peacefulWarrior.jpg',
     sound: 'assets/peaceful_warrior_right_sound.mp3',
   );
 
@@ -221,7 +221,7 @@ class YogaActions {
     name: 'Peaceful Warrior Left',
     text: 'Start in a standing position...',
     defaultDuration: 5,
-    image: 'assets/images/peaceful_warrior_left.jpg',
+    image: 'assets/images/peacefulWarrior.jpg',
     sound: 'assets/peaceful_warrior_left_sound.mp3',
   );
 
@@ -229,7 +229,7 @@ class YogaActions {
     name: 'Arms Overhead',
     text: 'Stand tall with your feet hip-width apart...',
     defaultDuration: 13,
-    image: 'assets/images/arms_overhead.jpg',
+    image: 'assets/images/armsOverhead.jpg',
     sound: 'assets/arms_overhead_sound.mp3',
   );
 
@@ -237,7 +237,7 @@ class YogaActions {
     name: 'Supine Knee Bend',
     text: 'Lie on your back with your knees bent...',
     defaultDuration: 16,
-    image: 'assets/images/supine_knee_bend.jpg',
+    image: 'assets/images/supineKneeBend.jpg',
     sound: 'assets/supine_knee_bend_sound.mp3',
   );
 
@@ -245,7 +245,7 @@ class YogaActions {
     name: 'Morning Stretch',
     text: 'Start your day with gentle stretches...',
     defaultDuration: 20,
-    image: 'assets/images/morning_stretch.jpg',
+    image: 'assets/images/morningStretch.jpg',
     sound: 'assets/morning_stretch_sound.mp3',
   );
 
@@ -253,7 +253,7 @@ class YogaActions {
     name: 'Knees to Chest',
     text: 'Lie on your back and hug your knees...',
     defaultDuration: 20,
-    image: 'assets/images/knees_to_chest.jpg',
+    image: 'assets/images/kneesToChest.jpg',
     sound: 'assets/knees_to_chest_sound.mp3',
   );
 
@@ -261,7 +261,7 @@ class YogaActions {
     name: 'Corpse Pose',
     text: 'Lie flat on your back with your legs...',
     defaultDuration: 13,
-    image: 'assets/images/corpse_pose.jpg',
+    image: 'assets/images/corpse.jpg',
     sound: 'assets/corpse_pose_sound.mp3',
   );
 
