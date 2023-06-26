@@ -225,14 +225,6 @@ class YogaActions {
     sound: 'assets/peaceful_warrior_left_sound.mp3',
   );
 
-  static final YogaAction forwardFold = YogaAction(
-    name: 'Forward Fold',
-    text: 'Stand with your feet hip-width apart...',
-    defaultDuration: 10,
-    image: 'assets/images/forward_fold.jpg',
-    sound: 'assets/forward_fold_sound.mp3',
-  );
-
   static final YogaAction armsOverhead = YogaAction(
     name: 'Arms Overhead',
     text: 'Stand tall with your feet hip-width apart...',
