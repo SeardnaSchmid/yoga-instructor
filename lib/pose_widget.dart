@@ -127,7 +127,8 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
               ),
             ),
             Positioned(
-              top: MediaQuery.of(context).size.height * 0.5,
+              top: MediaQuery.of(context).size.height * 0.6,
+              // Adjust this value to move the countdown timer down
               left: 0,
               right: 0,
               child: Column(
@@ -143,7 +144,7 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
                     strokeWidth: 10.0,
                     textStyle: const TextStyle(
                       fontSize: 48.0,
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),
                     isReverse: true,

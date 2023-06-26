@@ -1,8 +1,10 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import 'package:yoga_instructor/pose_widget.dart';
+import 'package:wakelock/wakelock.dart';
 
 import 'models/yoga_pose.dart';
 import 'models/yoga_session.dart';
+import 'pose_widget.dart';
 
 class SessionScreen extends StatefulWidget {
   final Session session;
@@ -15,15 +17,31 @@ class SessionScreen extends StatefulWidget {
 
 class SessionScreenState extends State<SessionScreen> {
   int currentPoseIndex = 0;
+  late AudioPlayer _audioPlayer;
+
+  @override
+  void initState() {
+    super.initState();
+    _audioPlayer = AudioPlayer();
+    Wakelock.enable();
+  }
+
+  @override
+  void dispose() {
+    Wakelock.disable();
+  }
 
   void goToNextPose() {
     if (currentPoseIndex < widget.session.poses.length - 1) {
+      _audioPlayer.play(AssetSource('sounds/ding-fadeout.mp3'));
       setState(() {
         currentPoseIndex++;
       });
     } else {
       // All poses finished
       // Close the session screen
+      _audioPlayer.play(AssetSource('sounds/meditation-bowl-success.mp3'));
+      Wakelock.disable();
       Navigator.pop(context);
     }
   }
