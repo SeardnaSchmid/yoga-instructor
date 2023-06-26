@@ -11,7 +11,7 @@ void main() {
 
 class ExampleSessions {
   static Session session1 = Session(
-    name: 'Morning Stretch',
+    name: 'Morning Stretch!',
     description: 'A gentle yoga session to wake up your body and mind.',
     poses: [
       YogaPose(YogaActions.startPreparation, duration: 15),
