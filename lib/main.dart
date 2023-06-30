@@ -14,7 +14,7 @@ class ExampleSessions {
     name: 'Morning Stretch!',
     description: 'A gentle yoga session to wake up your body and mind.',
     poses: [
-      YogaPose(YogaActions.startPreparation, duration: 15),
+      YogaPose(YogaActions.startPreparation),
       YogaPose(YogaActions.simpleSit),
       YogaPose(YogaActions.seatedTwistRight),
       YogaPose(YogaActions.seatedTwistLeft),
@@ -35,6 +35,7 @@ class ExampleSessions {
       YogaPose(YogaActions.armsOverhead),
       YogaPose(YogaActions.standingForwardBend),
       YogaPose(YogaActions.downwardFacingDog),
+      YogaPose(YogaActions.supineKneeBend),
       YogaPose(YogaActions.supineKneeBend),
       YogaPose(YogaActions.morningStretch),
       YogaPose(YogaActions.kneesToChest),
