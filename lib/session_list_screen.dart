@@ -7,7 +7,7 @@ import 'models/available_yoga_actions.dart';
 class SessionListScreen extends StatelessWidget {
   final List<Session> sessions; // List of sessions
 
-  SessionListScreen({required this.sessions});
+  const SessionListScreen({super.key, required this.sessions});
 
   @override
   Widget build(BuildContext context) {

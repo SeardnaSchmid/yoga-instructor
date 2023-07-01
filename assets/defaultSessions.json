@@ -1,7 +1,7 @@
 [
   {
-    "name": "Andis morning routine",
-    "description": "The casual morning routine for every andi out there.",
+    "name": "Simple morning routine",
+    "description": "The casual morning routine for everyone out there.",
     "poses": [
       { "actionId": "prepareYourself" },
       { "actionId": "simpleSit" },
@@ -24,12 +24,10 @@
       { "actionId": "armsOverhead" },
       { "actionId": "standingForwardBend" },
       { "actionId": "downwardFacingDog" },
-      { "actionId": "supineKneeBendLeft" },
-      { "actionId": "supineKneeBendRight" },
+      { "actionId": "corpsePoseVariationKneesBend" },
       { "actionId": "morningStretch" },
       { "actionId": "kneesToChest" },
       { "actionId": "corpsePose" },
-      { "actionId": "kneesToChest" },
       { "actionId": "cooldown" }
     ]
   }

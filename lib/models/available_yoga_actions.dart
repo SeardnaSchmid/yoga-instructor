@@ -82,6 +82,14 @@ class AvailableYogaActions {
       image: 'assets/images/yogaActions/corpse.jpg',
       sound: 'sounds/yogaActions/corpsePose.mp3',
     ),
+    "corpsePoseVariationKneeBend": YogaAction(
+      id: "corpsePoseVariationKneeBend",
+      name: 'Corpse Pose Variation Knees Bend',
+      text: 'Lie flat on your back with your legs...',
+      defaultDuration: 10,
+      image: 'assets/images/yogaActions/corpseVariationKneesBend.jpg',
+      sound: 'sounds/todo.mp3',
+    ),
     'deepLungeLeft': YogaAction(
       id: 'deepLungeLeft',
       name: 'Deep Lunge to the Left',
