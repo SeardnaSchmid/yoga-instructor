@@ -3,7 +3,7 @@
     "name": "Andis morning routine",
     "description": "The casual morning routine for every andi out there.",
     "poses": [
-      { "actionId": "startPreparation" },
+      { "actionId": "prepareYourself" },
       { "actionId": "simpleSit" },
       { "actionId": "seatedTwistRight" },
       { "actionId": "seatedTwistLeft" },
@@ -24,42 +24,13 @@
       { "actionId": "armsOverhead" },
       { "actionId": "standingForwardBend" },
       { "actionId": "downwardFacingDog" },
-      { "actionId": "supineKneeBend" },
-      { "actionId": "supineKneeBend" },
+      { "actionId": "supineKneeBendLeft" },
+      { "actionId": "supineKneeBendRight" },
       { "actionId": "morningStretch" },
       { "actionId": "kneesToChest" },
       { "actionId": "corpsePose" },
       { "actionId": "kneesToChest" },
-      { "actionId": "endCooldow "}
-    ]
-  },
-  {
-    "name": "Morning Energizer",
-    "description": "Your morning routine.",
-    "poses": [
-      {
-        "actionId": "startPreparation"
-      },
-      {
-        "actionId": "mountain",
-        "duration": 5
-      },
-      {
-        "actionId": "downwardFacingDog",
-        "duration": 8
-      },
-      {
-        "actionId": "childsPose",
-        "duration": 10
-      },
-      {
-        "actionId": "warrior1",
-        "duration": 6
-      },
-      {
-        "actionId": "endCooldown",
-        "duration": 10
-      }
+      { "actionId": "cooldown" }
     ]
   }
 ]

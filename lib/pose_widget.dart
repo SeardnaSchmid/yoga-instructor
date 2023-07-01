@@ -72,133 +72,141 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
 
   @override
   Widget build(BuildContext context) {
-    YogaAction currentAction = AvailableYogaActions.getAction(widget.pose.actionId);
+    YogaAction currentAction =
+        AvailableYogaActions.getAction(widget.pose.actionId);
 
     return Scaffold(
       body: Container(
-        color: Colors.grey, // Set the background color of the widget
-        child: Center(
-          child: Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: AssetImage(currentAction.image),
-                    fit: BoxFit.cover,
+        color: Colors.white, // Set the background color of the widget
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    currentAction.name,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8.0),
+                  Text(
+                    currentAction.text,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.0,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 8.0),
+                  Text(
+                    'Default Duration: ${currentAction.defaultDuration} seconds',
+                    textAlign: TextAlign.center,
+                  ),
+                  Text(
+                    'Pose Duration: ${widget.pose.duration ?? currentAction.defaultDuration} seconds',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Center(
+                child: AspectRatio(
+                  aspectRatio: 0.8,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 2.0,
+                      ),
+                      borderRadius: BorderRadius.circular(10.0),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                      image: DecorationImage(
+                        image: AssetImage(currentAction.image),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    padding: const EdgeInsets.all(16.0),
                   ),
                 ),
               ),
-              Positioned(
-                top: 20.0,
-                left: 20.0,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: Text(
-                        currentAction.name,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    const SizedBox(height: 8.0),
-                    Center(
-                      child: Column(
-                        children: [
-                          Text(
-                            currentAction.text,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 16.0,
-                            ),
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(
-                            currentAction.defaultDuration.toString(),
-                            textAlign: TextAlign.center,
-                          ),
-                          Text(
-                            widget.pose.duration.toString(),
-                            textAlign: TextAlign.center,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: CircularCountDownTimer(
+                duration: widget.pose.duration ?? currentAction.defaultDuration,
+                controller: _countDownController,
+                width: 100,
+                height: 100,
+                fillColor: Colors.grey,
+                ringColor: Colors.blueAccent,
+                backgroundColor: Colors.transparent,
+                strokeWidth: 10.0,
+                textStyle: const TextStyle(
+                  fontSize: 48.0,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
                 ),
+                isReverse: true,
+                onComplete: handleTimerCompletion,
               ),
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.6,
-                // Adjust this value to move the countdown timer down
-                left: 0,
-                right: 0,
-                child: Column(
-                  children: [
-                    CircularCountDownTimer(
-                      duration: widget.pose.duration ?? currentAction.defaultDuration,
-                      controller: _countDownController,
-                      width: 200,
-                      height: 200,
-                      fillColor: Colors.grey,
-                      ringColor: Colors.blueAccent,
-                      backgroundColor: Colors.transparent,
-                      strokeWidth: 10.0,
-                      textStyle: const TextStyle(
-                        fontSize: 48.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: toggleTimer,
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
                       ),
-                      isReverse: true,
-                      onComplete: handleTimerCompletion,
+                      minimumSize: const Size(140.0, 60.0),
+                      padding: const EdgeInsets.all(12.0),
                     ),
-                    const SizedBox(height: 16.0),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: toggleTimer,
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            minimumSize: const Size(140.0, 60.0),
-                            padding: const EdgeInsets.all(12.0),
-                          ),
-                          child: Text(
-                            stopButtonText,
-                            style: const TextStyle(
-                              fontSize: 18.0,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 16.0),
-                        ElevatedButton(
-                          onPressed: skipPose,
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30.0),
-                            ),
-                            minimumSize: const Size(140.0, 60.0),
-                            padding: const EdgeInsets.all(12.0),
-                          ),
-                          child: const Text(
-                            'Skip',
-                            style: TextStyle(
-                              fontSize: 18.0,
-                            ),
-                          ),
-                        ),
-                      ],
+                    child: Text(
+                      stopButtonText,
+                      style: const TextStyle(
+                        fontSize: 18.0,
+                      ),
                     ),
-                  ],
-                ),
+                  ),
+                  const SizedBox(width: 16.0),
+                  ElevatedButton(
+                    onPressed: skipPose,
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      minimumSize: const Size(140.0, 60.0),
+                      padding: const EdgeInsets.all(12.0),
+                    ),
+                    child: const Text(
+                      'Skip',
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
