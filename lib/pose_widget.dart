@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
+import 'models/yoga_action.dart';
 import 'models/yoga_pose.dart';
+import 'yoga_actions.dart';
 
 class YogaPoseWidget extends StatefulWidget {
   final YogaPose pose;
@@ -70,6 +72,8 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
 
   @override
   Widget build(BuildContext context) {
+    YogaAction currentAction = YogaActions.getAction(widget.pose.actionId);
+
     return Scaffold(
       body: Container(
         color: Colors.grey, // Set the background color of the widget
@@ -79,7 +83,7 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
               Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage(widget.pose.action.image),
+                    image: AssetImage(currentAction.image),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -92,7 +96,7 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
                   children: [
                     Center(
                       child: Text(
-                        widget.pose.action.name,
+                        currentAction.name,
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 24.0,
@@ -106,7 +110,7 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
                       child: Column(
                         children: [
                           Text(
-                            widget.pose.action.text,
+                            currentAction.text,
                             style: const TextStyle(
                               color: Colors.black,
                               fontSize: 16.0,
@@ -114,7 +118,7 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
                             textAlign: TextAlign.center,
                           ),
                           Text(
-                            widget.pose.action.defaultDuration.toString(),
+                            currentAction.defaultDuration.toString(),
                             textAlign: TextAlign.center,
                           ),
                           Text(
@@ -135,7 +139,7 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
                 child: Column(
                   children: [
                     CircularCountDownTimer(
-                      duration: widget.pose.duration,
+                      duration: widget.pose.duration ?? currentAction.defaultDuration,
                       controller: _countDownController,
                       width: 200,
                       height: 200,
