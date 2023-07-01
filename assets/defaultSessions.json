@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Morning Energizer",
+    "description": "Your morning routine.",
+    "poses": [
+      {
+        "actionId": "startPreparation"
+      },
+      {
+        "actionId": "mountain",
+        "duration": 5
+      },
+      {
+        "actionId": "downwardFacingDog",
+        "duration": 8
+      },
+      {
+        "actionId": "childsPose",
+        "duration": 10
+      },
+      {
+        "actionId": "warrior1",
+        "duration": 6
+      },
+      {
+        "actionId": "endCooldown",
+        "duration": 10
+      }
+    ]
+  }
+]
