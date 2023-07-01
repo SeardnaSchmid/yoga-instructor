@@ -3,7 +3,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 
 import 'models/yoga_action.dart';
 import 'models/yoga_pose.dart';
-import 'yoga_actions.dart';
+import 'models/available_yoga_actions.dart';
 
 class YogaPoseWidget extends StatefulWidget {
   final YogaPose pose;
@@ -29,7 +29,7 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
     super.initState();
     _countDownController = CountDownController();
     startTimer();
-    stopButtonText = isTimerRunning ? 'Stop' : 'Continue';
+    stopButtonText = isTimerRunning ? 'Pause' : 'Continue';
   }
 
   @override
@@ -72,7 +72,7 @@ class YogaPoseWidgetState extends State<YogaPoseWidget> {
 
   @override
   Widget build(BuildContext context) {
-    YogaAction currentAction = YogaActions.getAction(widget.pose.actionId);
+    YogaAction currentAction = AvailableYogaActions.getAction(widget.pose.actionId);
 
     return Scaffold(
       body: Container(

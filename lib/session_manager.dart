@@ -10,12 +10,12 @@ class SessionManager {
   static const String sessionsKey = 'sessions';
   static const String sessionsUrl = 'https://raw.githubusercontent.com/your-username/your-repo/main/defaultSessions.json';
 
-  // // Save sessions to local storage
-  // static Future<void> saveSessions(List<Session> sessions) async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   final sessionsJson = json.encode(sessions.map((session) => session.toJson()).toList());
-  //   await prefs.setString(sessionsKey, sessionsJson);
-  // }
+  // Save sessions to local storage
+  static Future<void> saveSessions(List<Session> sessions) async {
+    final prefs = await SharedPreferences.getInstance();
+    final sessionsJson = json.encode(sessions.map((session) => session.toJson()).toList());
+    await prefs.setString(sessionsKey, sessionsJson);
+  }
 
   // Retrieve sessions from local storage
   static Future<List<Session>> getSessions() async {

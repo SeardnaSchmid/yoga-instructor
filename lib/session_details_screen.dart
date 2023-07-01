@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yoga_instructor/yoga_actions.dart';
+import 'package:yoga_instructor/models/available_yoga_actions.dart';
 
 import 'session_screen.dart';
 import 'models/yoga_session.dart';
@@ -14,7 +14,7 @@ class SessionDetailsScreen extends StatelessWidget {
     int totalPoses = session.poses.length;
     int sessionDuration = 0;
     for (var pose in session.poses) {
-       sessionDuration += YogaActions.getDefaultActionDuration(pose.actionId);
+       sessionDuration += AvailableYogaActions.getDefaultActionDuration(pose.actionId);
     }
     int sessionMinutes = sessionDuration ~/ 60;
     int sessionSeconds = sessionDuration % 60;

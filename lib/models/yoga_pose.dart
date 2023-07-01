@@ -4,6 +4,13 @@ class YogaPose {
 
   YogaPose(this.actionId, {this.duration});
 
+  Map<String, dynamic> toJson() {
+    return {
+      'actionId': actionId,
+      'duration': duration,
+    };
+  }
+
   factory YogaPose.fromJson(Map<String, dynamic> json) {
     return YogaPose(
       json['actionId'],

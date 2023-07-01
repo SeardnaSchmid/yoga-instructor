@@ -1,6 +1,6 @@
-import 'models/yoga_action.dart';
+import 'yoga_action.dart';
 
-class YogaActions {
+class AvailableYogaActions {
   static final Map<String, YogaAction> actions = {
     'startPreparation': YogaAction(
       id: 'startPreparation',
@@ -269,7 +269,7 @@ class YogaActions {
   };
 
   static YogaAction getAction(String actionId) {
-    return actions[actionId] ?? YogaAction(
+    var yogaActionNotFoundFallback = YogaAction(
       id: actionId,
       name: "$actionId is not yet implemented. Contact the developer",
       text: '$actionId is not yet implemented. Contact the developer',
@@ -277,10 +277,13 @@ class YogaActions {
       image: 'assets/images/default.jpg',
       sound: 'assets/sounds/default.mp3',
     );
+    return actions[actionId] ?? yogaActionNotFoundFallback;
   }
+
   // Get default duration of a YogaAction by ID
   static int getDefaultActionDuration(String id) {
     final YogaAction? action = actions[id];
-    return action?.defaultDuration ?? 0;
+    var defaultDurationFallback = 10;
+    return action?.defaultDuration ?? defaultDurationFallback;
   }
 }

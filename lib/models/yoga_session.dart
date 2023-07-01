@@ -12,13 +12,21 @@ class Session {
   });
 
   factory Session.fromJson(Map<String, dynamic> json) {
-    final List<dynamic> posesData = json['poses'];
-    final List<YogaPose> poses = posesData.map((pose) => YogaPose.fromJson(pose)).toList();
+    final List<dynamic> posesJson = json['poses'];
+    final List<YogaPose> poses = posesJson.map((poseJson) => YogaPose.fromJson(poseJson)).toList();
 
     return Session(
       name: json['name'],
       description: json['description'],
       poses: poses,
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'description': description,
+      'poses': poses.map((pose) => pose.toJson()).toList(),
+    };
   }
 }

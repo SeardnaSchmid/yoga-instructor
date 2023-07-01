@@ -1,8 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
-import 'package:yoga_instructor/yoga_actions.dart';
 
+import 'models/available_yoga_actions.dart';
 import 'models/yoga_pose.dart';
 import 'models/yoga_session.dart';
 import 'pose_widget.dart';
@@ -29,6 +29,7 @@ class SessionScreenState extends State<SessionScreen> {
 
   @override
   void dispose() {
+    super.dispose();
     Wakelock.disable();
   }
 
@@ -55,7 +56,7 @@ class SessionScreenState extends State<SessionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(YogaActions.actions[currentPose.actionId]?.name ?? 'Error: Unknown YogaAction'),
+        title: Text(AvailableYogaActions.actions[currentPose.actionId]?.name ?? 'Error: Unknown YogaAction'),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(8.0),
           child: LinearProgressIndicator(

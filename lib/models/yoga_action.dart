@@ -25,4 +25,15 @@ class YogaAction {
       defaultDuration: json['defaultDuration'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'text': text,
+      'image': image,
+      'sound': sound,
+      'defaultDuration': defaultDuration,
+    };
+  }
 }
