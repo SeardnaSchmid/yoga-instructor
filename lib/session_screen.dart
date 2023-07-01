@@ -10,7 +10,7 @@ import 'pose_widget.dart';
 class SessionScreen extends StatefulWidget {
   final Session session;
 
-  const SessionScreen({super.key, required this.session});
+  const SessionScreen({Key? key, required this.session}) : super(key: key);
 
   @override
   SessionScreenState createState() => SessionScreenState();
@@ -25,6 +25,7 @@ class SessionScreenState extends State<SessionScreen> {
     super.initState();
     _audioPlayer = AudioPlayer();
     Wakelock.enable();
+    playPoseSound(widget.session.poses[currentPoseIndex]);
   }
 
   @override
@@ -35,10 +36,10 @@ class SessionScreenState extends State<SessionScreen> {
 
   void goToNextPose() {
     if (currentPoseIndex < widget.session.poses.length - 1) {
-      _audioPlayer.play(AssetSource('sounds/ding-fadeout.mp3'));
       setState(() {
         currentPoseIndex++;
       });
+      playPoseSound(widget.session.poses[currentPoseIndex]);
     } else {
       // All poses finished
       // Close the session screen
@@ -46,6 +47,10 @@ class SessionScreenState extends State<SessionScreen> {
       Wakelock.disable();
       Navigator.pop(context);
     }
+  }
+
+  void playPoseSound(YogaPose pose) {
+    _audioPlayer.play(AssetSource(AvailableYogaActions.getAction(pose.actionId).sound));
   }
 
   @override
@@ -56,7 +61,7 @@ class SessionScreenState extends State<SessionScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(AvailableYogaActions.actions[currentPose.actionId]?.name ?? 'Error: Unknown YogaAction'),
+        title: Text(AvailableYogaActions.getAction(currentPose.actionId).name),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(8.0),
           child: LinearProgressIndicator(

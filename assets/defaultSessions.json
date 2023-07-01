@@ -1,36 +1,41 @@
 [
   {
-    "name": "Morning Energizer",
-    "description": "Your morning routine.",
+    "name": "Andis morning routine",
+    "description": "The casual morning routine for every andi out there.",
     "poses": [
-      {
-        "actionId": "startPreparation"
-      },
-      {
-        "actionId": "mountain",
-        "duration": 5
-      },
-      {
-        "actionId": "downwardFacingDog",
-        "duration": 8
-      },
-      {
-        "actionId": "childsPose",
-        "duration": 10
-      },
-      {
-        "actionId": "warrior1",
-        "duration": 6
-      },
-      {
-        "actionId": "endCooldown",
-        "duration": 10
-      }
+      { "actionId": "startPreparation" },
+      { "actionId": "simpleSit" },
+      { "actionId": "seatedTwistRight" },
+      { "actionId": "seatedTwistLeft" },
+      { "actionId": "allFoursPose" },
+      { "actionId": "plankPose" },
+      { "actionId": "cobraPose" },
+      { "actionId": "childsPose" },
+      { "actionId": "downwardFacingDog" },
+      { "actionId": "deepLungeRight" },
+      { "actionId": "warrior2Right" },
+      { "actionId": "peacefulWarriorRight" },
+      { "actionId": "downwardFacingDog" },
+      { "actionId": "deepLungeLeft" },
+      { "actionId": "warrior2Left" },
+      { "actionId": "peacefulWarriorLeft" },
+      { "actionId": "downwardFacingDog" },
+      { "actionId": "standingForwardBend" },
+      { "actionId": "armsOverhead" },
+      { "actionId": "standingForwardBend" },
+      { "actionId": "downwardFacingDog" },
+      { "actionId": "supineKneeBend" },
+      { "actionId": "supineKneeBend" },
+      { "actionId": "morningStretch" },
+      { "actionId": "kneesToChest" },
+      { "actionId": "corpsePose" },
+      { "actionId": "kneesToChest" },
+      { "actionId": "endCooldow "}
     ]
   },
   {
-    "name": "Morning Energizer2",
-    "description": "Your morning routine.2",
+    "name": "Morning Energizer",
+    "description": "Your morning routine.",
     "poses": [
       {
         "actionId": "startPreparation"
