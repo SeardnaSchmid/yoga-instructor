@@ -66,6 +66,7 @@ Contributions to Yoga Instructor are welcome! If you'd like to contribute to the
    \`\`\`
 
 3. Make your modifications and commit the changes.
+   Try to stick to the names of this site: https://www.yogaclassplan.com/yoga-poses/
 
 4. Push your changes to your forked repository:
 
