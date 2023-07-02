@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'models/yoga_action.dart';
-import 'models/yoga_pose.dart';
-import 'models/available_yoga_actions.dart';
+import '../models/yoga_action.dart';
+import '../models/yoga_pose.dart';
+import '../models/available_yoga_actions.dart';
 
 class YogaPoseWidget extends StatelessWidget {
   final YogaPose pose;

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yoga_instructor/session.provider.dart';
 
-import 'models/yoga_session.dart';
-import 'session_list_screen.dart';
-import 'session_manager.dart';
+import 'screens/sessions_list.screen.dart';
 
 void main() {
-  runApp(const YogaWorkoutApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => SessionProvider(),
+      child: const YogaWorkoutApp(),
+    ),
+  );
 }
 
 class YogaWorkoutApp extends StatelessWidget {
@@ -18,16 +23,14 @@ class YogaWorkoutApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FutureBuilder<List<Session>>(
-        future: SessionManager.loadSessionsFromAsset(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
+      home: Consumer<SessionProvider>(
+        builder: (context, sessionProvider, _) {
+          if (sessionProvider.isLoading) {
             return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
+          } else if (sessionProvider.hasError) {
             return const Center(child: Text('Error loading sessions'));
           } else {
-            final sessions = snapshot.data ?? [];
-            return SessionListScreen(sessions: sessions);
+            return const SessionsListScreen();
           }
         },
       ),

@@ -1,5 +1,6 @@
 [
   {
+    "id": "123",
     "name": "Simple morning routine",
     "description": "The casual morning routine for everyone out there.",
     "poses": [
@@ -30,5 +31,15 @@
       { "actionId": "corpsePose" },
       { "actionId": "cooldown" }
     ]
+  },
+  {
+    "id": "321",
+    "name": "Test2",
+    "description": "Test",
+    "poses": [
+      { "actionId": "prepareYourself" },
+      { "actionId": "cooldown" }
+    ]
   }
+
 ]

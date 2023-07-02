@@ -1,4 +1,5 @@
 class YogaAction {
+  final String id;
   final String name;
   final String text;
   final String image;
@@ -8,6 +9,7 @@ class YogaAction {
   static const defaultDurationFallback = 15;
 
   YogaAction({
+    required this.id,
     required this.name,
     required this.text,
     this.image = "assets/images/yogaActions/todo.jpg",
@@ -17,6 +19,7 @@ class YogaAction {
 
   factory YogaAction.fromJson(Map<String, dynamic> json) {
     return YogaAction(
+      id: json['id'],
       name: json['name'],
       text: json['text'],
       image: json['image'],
@@ -27,6 +30,7 @@ class YogaAction {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'name': name,
       'text': text,
       'image': image,

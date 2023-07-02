@@ -3,21 +3,21 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
 
-import 'models/available_yoga_actions.dart';
-import 'models/yoga_pose.dart';
-import 'models/yoga_session.dart';
-import 'pose_widget.dart';
+import '../models/available_yoga_actions.dart';
+import '../models/yoga_pose.dart';
+import '../models/yoga_session.dart';
+import '../widgets/yoga_pose.widget.dart';
 
-class SessionScreen extends StatefulWidget {
+class SessionProgressionScreen extends StatefulWidget {
   final Session session;
 
-  const SessionScreen({Key? key, required this.session}) : super(key: key);
+  const SessionProgressionScreen({Key? key, required this.session}) : super(key: key);
 
   @override
-  SessionScreenState createState() => SessionScreenState();
+  SessionProgressionScreenState createState() => SessionProgressionScreenState();
 }
 
-class SessionScreenState extends State<SessionScreen> {
+class SessionProgressionScreenState extends State<SessionProgressionScreen> {
   int currentPoseIndex = 0;
   late AudioPlayer _audioPlayer;
   late int currentDuration;

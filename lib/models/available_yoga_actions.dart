@@ -3,6 +3,7 @@ import 'yoga_action.dart';
 class AvailableYogaActions {
   static final Map<String, YogaAction> actions = {
     'allFoursPose': YogaAction(
+      id: "allFoursPose",
       name: 'All-Fours Pose',
       text: 'Kneel on all fours and make the back straight ...',
       defaultDuration: 13,
@@ -10,6 +11,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/allFoursPose.mp3',
     ),
     'armsOverhead': YogaAction(
+      id: "armsOverhead",
       name: 'Arms Overhead',
       text: 'Stand tall with your feet hip-width apart...',
       defaultDuration: 13,
@@ -17,6 +19,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/armsOverhead.mp3',
     ),
     'boatPose': YogaAction(
+      id: "boatPose",
       name: 'Boat Pose',
       text: 'Sit on the floor with your knees bent...',
       defaultDuration: 15,
@@ -24,6 +27,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/boatPose.mp3',
     ),
     'bridgePose': YogaAction(
+      id: "bridgePose",
       name: 'Bridge Pose',
       text: 'Lie on your back with your knees bent...',
       defaultDuration: 15,
@@ -31,6 +35,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/bridgePose.mp3',
     ),
     'camelPose': YogaAction(
+      id: "camelPose",
       name: 'Camel Pose',
       text: 'Kneel on the floor and place your...',
       defaultDuration: 15,
@@ -38,6 +43,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/camelPose.mp3',
     ),
     'chairPose': YogaAction(
+      id: "chairPose",
       name: 'Chair Pose',
       text: 'Stand tall with your feet together...',
       defaultDuration: 10,
@@ -45,6 +51,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/chairPose.mp3',
     ),
     'childsPose': YogaAction(
+      id: "childsPose",
       name: 'Child\'s Pose',
       text: 'Sit back on your heels and rest your...',
       defaultDuration: 16,
@@ -52,6 +59,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/childsPose.mp3',
     ),
     'cobraPose': YogaAction(
+      id: "cobraPose",
       name: 'Cobra Pose',
       text: 'Lie face down and place your hands...',
       defaultDuration: 16,
@@ -59,6 +67,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/cobraPose.mp3',
     ),
     'cooldown': YogaAction(
+      id: "cooldown",
       name: 'Cooldown',
       text: 'Namaste - Bring your hands to your heart, lower your gaze. Give yourself a smile and thank yourself for taking the time.',
       defaultDuration: 10,
@@ -66,6 +75,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/cooldown.mp3',
     ),
     "corpsePose": YogaAction(
+      id: "corpsePose",
       name: 'Corpse Pose',
       text: 'Lie flat on your back with your legs...',
       defaultDuration: 13,
@@ -73,6 +83,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/corpsePose.mp3',
     ),
     "corpsePoseVariationKneesBend": YogaAction(
+      id: "corpsePoseVariationKneesBend",
       name: 'Corpse Pose Variation Knees Bend',
       text: 'Lie flat on your back with your legs...',
       defaultDuration: 15,
@@ -80,6 +91,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/corpsePoseVariationKneesBend.mp3',
     ),
     'deepLungeLeft': YogaAction(
+      id: "deepLungeLeft",
       name: 'Deep Lunge to the Left',
       text: 'Start in a standing position...',
       defaultDuration: 17,
@@ -87,6 +99,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/deepLungeLeft.mp3',
     ),
     'deepLungeRight': YogaAction(
+      id: "deepLungeRight",
       name: 'Deep Lunge to the Right',
       text: 'Start in a standing position...',
       defaultDuration: 17,
@@ -94,6 +107,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/deepLungeRight.mp3',
     ),
     'downwardFacingDog': YogaAction(
+      id: "downwardFacingDog",
       name: 'Downward Facing Dog',
       text: 'Start on your hands and knees...',
       defaultDuration: 13,
@@ -101,6 +115,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/downwardFacingDog.mp3',
     ),
     'extendedTrianglePose': YogaAction(
+      id: "extendedTrianglePose",
       name: 'Extended Triangle Pose',
       text: 'Stand with your feet wide apart...',
       defaultDuration: 5,
@@ -108,6 +123,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/extendedTrianglePose.mp3',
     ),
     "kneesToChest": YogaAction(
+      id: "kneesToChest",
       name: 'Knees to Chest',
       text: 'Lie on your back and hug your knees...',
       defaultDuration: 20,
@@ -115,6 +131,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/kneesToTheChest.mp3',
     ),
     'morningStretch': YogaAction(
+      id: "morningStretch",
       name: 'Morning Stretch',
       text: 'Start your day with gentle stretches...',
       defaultDuration: 10,
@@ -122,6 +139,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/morningStretch.mp3',
     ),
     'mountainPose': YogaAction(
+      id: "mountainPose",
       name: 'Mountain Pose',
       text: 'Stand tall with your feet together and...',
       defaultDuration: 5,
@@ -129,6 +147,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/mountainPose.mp3',
     ),
     'peacefulWarriorLeft': YogaAction(
+      id: "peacefulWarriorLeft",
       name: 'Peaceful Warrior Left',
       text: 'Start in a standing position...',
       defaultDuration: 10,
@@ -136,6 +155,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/peacefulWarriorLeft.mp3',
     ),
     'peacefulWarriorRight': YogaAction(
+      id: "peacefulWarriorRight",
       name: 'Peaceful Warrior Right',
       text: 'Start in a standing position...',
       defaultDuration: 10,
@@ -143,6 +163,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/peacefulWarriorRight.mp3',
     ),
     'pigeonPoseLeft': YogaAction(
+      id: "pigeonPoseLeft",
       name: 'Pigeon Pose left leg in front',
       text: 'Start in a high plank position and...',
       defaultDuration: 15,
@@ -150,6 +171,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/pigeonPoseLeft.mp3',
     ),
     'pigeonPoseRight': YogaAction(
+      id: "pigeonPoseRight",
       name: 'Pigeon Pose right leg in front',
       text: 'Start in a high plank position and...',
       defaultDuration: 15,
@@ -157,6 +179,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/pigeonPoseRight.mp3',
     ),
     'plankPose': YogaAction(
+      id: "plankPose",
       name: 'Plank Pose',
       text: 'Start in a high push-up position...',
       defaultDuration: 16,
@@ -164,6 +187,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/plankPose.mp3',
     ),
     'prepareYourself': YogaAction(
+      id: "prepareYourself",
       name: 'Prepare yourself',
       text: 'make yourself comfortable and prepare yourself...',
       defaultDuration: 10,
@@ -171,6 +195,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/prepareYourself.mp3',
     ),
     'seatedForwardBend': YogaAction(
+      id: "seatedForwardBend",
       name: 'Seated Forward Bend',
       text: 'Sit on the floor with your legs...',
       defaultDuration: 5,
@@ -178,6 +203,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/seated_forward_bend_sound.mp3',
     ),
     'seatedTwistLeft': YogaAction(
+      id: "seatedTwistLeft",
       name: 'Seated Twist to the Left',
       text: 'Sit on the floor with your legs extended...',
       defaultDuration: 20,
@@ -185,6 +211,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/seatedTwistLeft.mp3',
     ),
     'seatedTwistRight': YogaAction(
+      id: "seatedTwistRight",
       name: 'Seated Twist to the Right',
       text: 'Sit on the floor with your legs extended...',
       defaultDuration: 20,
@@ -192,6 +219,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/seatedTwistRight.mp3',
     ),
     'simpleSit': YogaAction(
+      id: "simpleSit",
       name: 'Simple Sit',
       text: 'Sit on the floor with your legs crossed...',
       defaultDuration: 20,
@@ -199,6 +227,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/simpleSit.mp3',
     ),
     'standingForwardBend': YogaAction(
+      id: "standingForwardBend",
       name: 'Standing Forward Bend',
       text: 'Stand tall with your feet together and...',
       defaultDuration: 15,
@@ -206,6 +235,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/standigForwardBend.mp3',
     ),
     'supineKneeBendLeft': YogaAction(
+      id: "supineKneeBendLeft",
       name: 'Supine Knee Bend Left',
       text: 'Lie on your back with your knees bent...',
       defaultDuration: 16,
@@ -213,6 +243,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/supineKneeBendLeft.mp3',
     ),
     'supineKneeBendRight': YogaAction(
+      id: "supineKneeBendRight",
       name: 'Supine Knee Bend',
       text: 'Lie on your back with your knees bent...',
       defaultDuration: 16,
@@ -220,6 +251,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/supineKneeBendRight.mp3',
     ),
     'treePose': YogaAction(
+      id: "treePose",
       name: 'Tree Pose',
       text: 'Stand tall and shift your weight onto...',
       defaultDuration: 4,
@@ -227,6 +259,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/treePose.mp3',
     ),
     'warrior1Left': YogaAction(
+      id: "warrior1Left",
       name: 'Warrior I Pose Left',
       text: 'Step your left foot back and...',
       defaultDuration: 10,
@@ -234,6 +267,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/warrior1Left.mp3',
     ),
     'warrior1Right': YogaAction(
+      id: "warrior1Right",
       name: 'Warrior I Pose Right',
       text: 'Step your left foot back and...',
       defaultDuration: 10,
@@ -241,6 +275,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/warrior1Right.mp3',
     ),
     'standingHalfForwardBend': YogaAction(
+      id: "standingHalfForwardBend",
       name: 'Standing Half Forward Bend',
       text: 'Stand tall with your feet together and...',
       defaultDuration: 15,
@@ -248,6 +283,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/todo.mp3',
     ),
     'warrior2Left': YogaAction(
+      id: "warrior2Left",
       name: 'Warrior 2 Left',
       text: 'Start in a standing position...',
       defaultDuration: 20,
@@ -255,6 +291,7 @@ class AvailableYogaActions {
       sound: 'sounds/yogaActions/warrior2Left.mp3',
     ),
     'warrior2Right': YogaAction(
+      id: "warrior2Right",
       name: 'Warrior 2 Right',
       text: 'Start in a standing position...',
       defaultDuration: 20,
@@ -265,6 +302,7 @@ class AvailableYogaActions {
 
   static YogaAction getAction(String actionId) {
     var yogaActionNotFoundFallback = YogaAction(
+      id: "yogaActionNotFoundFallback",
       name: "$actionId is not yet implemented. Or it is the wrong actionId. Contact the developer",
       text: '$actionId is not yet implemented. Or it is the wrong actionId. Contact the developer',
     );
