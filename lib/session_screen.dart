@@ -1,4 +1,5 @@
 import 'package:audioplayers/audioplayers.dart';
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:wakelock/wakelock.dart';
 
@@ -19,13 +20,25 @@ class SessionScreen extends StatefulWidget {
 class SessionScreenState extends State<SessionScreen> {
   int currentPoseIndex = 0;
   late AudioPlayer _audioPlayer;
+  late int currentDuration;
+  late CountDownController _countDownController;
+  bool isTimerRunning = true;
+  late String stopButtonText;
 
   @override
   void initState() {
     super.initState();
+    _countDownController = CountDownController();
     _audioPlayer = AudioPlayer();
     Wakelock.enable();
-    playPoseSound(widget.session.poses[currentPoseIndex]);
+
+    stopButtonText = isTimerRunning ? 'Pause' : 'Continue';
+
+    var currentPose = widget.session.poses[currentPoseIndex];
+    currentDuration = currentPose.duration ??
+        AvailableYogaActions.getDefaultActionDuration(currentPose.actionId);
+    startTimer();
+    playPoseSound(currentPose);
   }
 
   @override
@@ -34,11 +47,31 @@ class SessionScreenState extends State<SessionScreen> {
     Wakelock.disable();
   }
 
-  void goToNextPose() {
+  void startTimer() {
+    _countDownController.restart(duration: currentDuration);
+  }
+
+  void toggleTimer() {
+    setState(() {
+      if (isTimerRunning) {
+        _countDownController.pause();
+      } else {
+        _countDownController.resume();
+      }
+      isTimerRunning = !isTimerRunning;
+      stopButtonText = isTimerRunning ? 'Stop' : 'Continue';
+    });
+  }
+
+  void onNextPose() {
     if (currentPoseIndex < widget.session.poses.length - 1) {
       setState(() {
         currentPoseIndex++;
+        var currentPose = widget.session.poses[currentPoseIndex];
+        currentDuration = currentPose.duration ??
+            AvailableYogaActions.getDefaultActionDuration(currentPose.actionId);
       });
+      _countDownController.restart(duration: currentDuration);
       playPoseSound(widget.session.poses[currentPoseIndex]);
     } else {
       // All poses finished
@@ -50,7 +83,8 @@ class SessionScreenState extends State<SessionScreen> {
   }
 
   void playPoseSound(YogaPose pose) {
-    _audioPlayer.play(AssetSource(AvailableYogaActions.getAction(pose.actionId).sound));
+    _audioPlayer
+        .play(AssetSource(AvailableYogaActions.getAction(pose.actionId).sound));
   }
 
   @override
@@ -72,9 +106,72 @@ class SessionScreenState extends State<SessionScreen> {
           ),
         ),
       ),
-      body: YogaPoseWidget(
-        pose: currentPose,
-        onNextPose: goToNextPose,
+      body: Column(
+        children: [
+          Expanded(
+            child: YogaPoseWidget(pose: currentPose),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: CircularCountDownTimer(
+              duration: currentDuration,
+              controller: _countDownController,
+              width: 100,
+              height: 100,
+              fillColor: Colors.grey,
+              ringColor: Colors.blueAccent,
+              backgroundColor: Colors.transparent,
+              strokeWidth: 10.0,
+              textStyle: const TextStyle(
+                fontSize: 48.0,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+              isReverse: true,
+              onComplete: onNextPose,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: toggleTimer,
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    minimumSize: const Size(140.0, 60.0),
+                    padding: const EdgeInsets.all(12.0),
+                  ),
+                  child: Text(
+                    stopButtonText,
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: onNextPose,
+                  style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                    ),
+                    minimumSize: const Size(140.0, 60.0),
+                    padding: const EdgeInsets.all(12.0),
+                  ),
+                  child: const Text(
+                    'Next Pose',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
