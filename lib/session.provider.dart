@@ -118,4 +118,10 @@ class SessionProvider with ChangeNotifier {
       orElse: () => throw Error(),
     );
   }
+
+  Future<void> removeSession(String sessionId) async {
+    _sessions.removeWhere((session) => session.id == sessionId);
+    await saveSessions();
+    notifyListeners();
+  }
 }

@@ -19,7 +19,7 @@ class SessionOverviewScreen extends StatelessWidget {
         if (session == null) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Session Details'),
+              title: const Text('Session Overview'),
             ),
             body: const Center(
               child: Text('Session not found'),
@@ -39,7 +39,7 @@ class SessionOverviewScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: const Text('Session Details'),
+            title: const Text('Session Overview'),
           ),
           body: Container(
             padding: const EdgeInsets.all(16.0),
