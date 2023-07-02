@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yoga_instructor/models/available_yoga_actions.dart';
@@ -21,7 +20,6 @@ class SessionEditScreenState extends State<SessionEditScreen> {
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
   final List<YogaPose> _poses = [];
-  late String _selectedAction;
 
   @override
   void initState() {
@@ -30,7 +28,6 @@ class SessionEditScreenState extends State<SessionEditScreen> {
     _descriptionController =
         TextEditingController(text: widget.session.description);
     _poses.addAll(widget.session.poses);
-    _selectedAction = AvailableYogaActions.getAction("allFoursPose").id;
   }
 
   @override
@@ -40,9 +37,9 @@ class SessionEditScreenState extends State<SessionEditScreen> {
     super.dispose();
   }
 
-  void _addPose() {
+  void _addPose(YogaPose newPose) {
     setState(() {
-      _poses.add(YogaPose(_selectedAction, duration: 10));
+      _poses.add(newPose);
     });
   }
 
@@ -50,6 +47,57 @@ class SessionEditScreenState extends State<SessionEditScreen> {
     setState(() {
       _poses.removeAt(index);
     });
+  }
+
+  void _saveChanges(BuildContext context, SessionProvider sessionProvider) {
+    final editedSession = Session(
+      id: widget.session.id,
+      name: _nameController.text,
+      description: _descriptionController.text,
+      poses: _poses,
+    );
+    sessionProvider.saveSession(editedSession);
+    Navigator.pop(context);
+  }
+
+  Future<void> _showAddPoseBottomSheet(BuildContext context) async {
+    final action = await showModalBottomSheet<YogaAction>(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                'Add Pose',
+                style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 16.0),
+              Expanded(
+                child: ListView(
+                  children: AvailableYogaActions.actions.values
+                      .map<Widget>((YogaAction action) {
+                    return ListTile(
+                      title: Text(action.name),
+                      onTap: () {
+                        Navigator.pop(context, action);
+                      },
+                    );
+                  }).toList(),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+
+    if (action != null) {
+      final newPose = YogaPose(action.id, duration: 10);
+      _addPose(newPose);
+    }
   }
 
   @override
@@ -79,11 +127,44 @@ class SessionEditScreenState extends State<SessionEditScreen> {
                 ),
                 const SizedBox(height: 16.0),
                 const Text(
-                  'Poses',
+                  'Session Poses:',
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 Expanded(
-                  child: ReorderableListView(
+                  child: ReorderableListView.builder(
+                    itemCount: _poses.length,
+                    itemBuilder: (context, index) {
+                      final pose = _poses[index];
+                      final action = AvailableYogaActions.getAction(
+                          pose.actionId);
+                      return Dismissible(
+                        key: ValueKey(pose),
+                        direction: DismissDirection.endToStart,
+                        background: Container(
+                          color: Colors.red,
+                          child: const Align(
+                            alignment: Alignment.centerRight,
+                            child: Padding(
+                              padding: EdgeInsets.only(right: 16.0),
+                              child: Icon(
+                                Icons.delete,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                        onDismissed: (direction) {
+                          _removePose(index);
+                        },
+                        child: ListTile(
+                          title: Text(
+                            'Pose ${index + 1} - ${action.name}',
+                          ),
+                          subtitle: Text('Duration: ${pose.duration} seconds'),
+                          leading: const Icon(Icons.drag_handle),
+                        ),
+                      );
+                    },
                     onReorder: (oldIndex, newIndex) {
                       setState(() {
                         if (newIndex > oldIndex) {
@@ -93,67 +174,24 @@ class SessionEditScreenState extends State<SessionEditScreen> {
                         _poses.insert(newIndex, pose);
                       });
                     },
-                    dragStartBehavior: DragStartBehavior.down,
-                    children: _poses.asMap().entries.map((entry) {
-                      final index = entry.key;
-                      final pose = entry.value;
-                      return ListTile(
-                        key: ValueKey(pose),
-                        title: Text(
-                            'Pose ${index + 1} - ${AvailableYogaActions.getAction(pose.actionId).name}'),
-                        subtitle: Text('Duration: ${pose.duration} seconds'),
-                        trailing: GestureDetector(
-                          onTap: () => _removePose(index),
-                          child: const Icon(Icons.delete),
-                        ),
-                        leading: const Icon(Icons.drag_handle),
-                      );
-                    }).toList(),
-                  ),
-                ),
-                Row(
-                  children: [
-                    DropdownButton<String>(
-                      value: _selectedAction,
-                      onChanged: (newValue) {
-                        setState(() {
-                          _selectedAction = newValue!;
-                        });
-                      },
-                      items: AvailableYogaActions.actions.values
-                          .map<DropdownMenuItem<String>>((YogaAction action) {
-                        return DropdownMenuItem<String>(
-                          value: action.id,
-                          child: Text(action.name),
-                        );
-                      }).toList(),
-                    ),
-                    ElevatedButton(
-                      onPressed: _addPose,
-                      child: const Text('Add Pose'),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 16.0),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Save the changes and navigate back to SessionOverviewScreen
-                      final editedSession = Session(
-                        id: widget.session.id,
-                        name: _nameController.text,
-                        description: _descriptionController.text,
-                        poses: _poses,
-                      );
-                      sessionProvider.saveSession(editedSession);
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Save Changes'),
                   ),
                 ),
               ],
             ),
+          ),
+          floatingActionButton: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              FloatingActionButton(
+                onPressed: () => _showAddPoseBottomSheet(context),
+                child: const Icon(Icons.add),
+              ),
+              const SizedBox(height: 16.0),
+              FloatingActionButton(
+                onPressed: () => _saveChanges(context, sessionProvider),
+                child: const Icon(Icons.save),
+              ),
+            ],
           ),
         );
       },

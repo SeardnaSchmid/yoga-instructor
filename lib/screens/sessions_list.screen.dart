@@ -56,7 +56,8 @@ class SessionsListScreen extends StatelessWidget {
                   '$sessionMinutes:${sessionSeconds.toString().padLeft(2, '0')}';
 
               return Dismissible(
-                key: Key(session.id), // Unique key for each session
+                key: Key(session.id),
+                direction: DismissDirection.endToStart,
                 confirmDismiss: (_) async {
                   return await showDialog(
                     context: context,

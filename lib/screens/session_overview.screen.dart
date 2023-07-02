@@ -40,6 +40,19 @@ class SessionOverviewScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             title: const Text('Session Overview'),
+            actions: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SessionEditScreen(session: session),
+                    ),
+                  );
+                },
+                child: const Icon(Icons.build),
+              ),
+            ],
           ),
           body: Container(
             padding: const EdgeInsets.all(16.0),
@@ -78,71 +91,62 @@ class SessionOverviewScreen extends StatelessWidget {
                   child: ListView.separated(
                     itemCount: session.poses.length,
                     separatorBuilder: (context, index) => const Divider(color: Colors.grey),
-                    itemBuilder: (context, index) {
-                      var pose = session.poses[index];
-                      var action = AvailableYogaActions.getAction(pose.actionId);
-                      return GestureDetector(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => Scaffold(
-                              appBar: AppBar(
-                                title: const Text("Pose Details"),
+                      itemBuilder: (context, index) {
+                        var pose = session.poses[index];
+                        var action = AvailableYogaActions.getAction(pose.actionId);
+                        return ListTile(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => Scaffold(
+                                appBar: AppBar(
+                                  title: const Text("Pose Details"),
+                                ),
+                                body: YogaPoseWidget(pose: pose),
                               ),
-                              body: YogaPoseWidget(pose: pose),
-                            ),
-                          );
-                        },
-                        child: ListTile(
+                            );
+                          },
                           leading: CircleAvatar(
                             backgroundImage: AssetImage(action.image),
+                            radius: 30.0,
                           ),
-                          title: Text(action.name),
-                          subtitle: Text('Duration: ${pose.duration ?? action.defaultDuration} seconds'),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        height: 75,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SessionEditScreen(session: session),
-                              ),
-                            );
-                          },
-                          child: const Text('Edit Session'),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 75,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SessionProgressionScreen(session: session),
-                              ),
-                            );
-                          },
-                          child: const Text('Start Session'),
-                        ),
-                      ),
-                    ],
+                          title: Text(
+                            action.name,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          subtitle: Text(
+                            '${pose.duration ?? action.defaultDuration} seconds',
+                            style: const TextStyle(
+                              fontStyle: FontStyle.italic,
+                            ),
+                          ),
+                        );
+                      }
                   ),
                 ),
               ],
             ),
           ),
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SessionProgressionScreen(session: session),
+                  ),
+                );
+              },
+              child: const Icon(Icons.play_arrow),
+              backgroundColor: Colors.green, // Customize the background color
+              foregroundColor: Colors.white, // Customize the icon color
+              elevation: 8.0, // Increase the elevation for a raised effect
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0), // Customize the button shape if desired
+              ),
+            ),
         );
       },
     );
