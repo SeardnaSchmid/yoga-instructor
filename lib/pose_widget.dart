@@ -35,7 +35,6 @@ class YogaPoseWidget extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 8.0),
                   Text(
                     currentAction.text,
                     style: const TextStyle(
@@ -44,15 +43,14 @@ class YogaPoseWidget extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 8.0),
-                  Text(
-                    'Default Duration: ${currentAction.defaultDuration} seconds',
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(
-                    'Pose Duration: ${pose.duration ?? currentAction.defaultDuration} seconds',
-                    textAlign: TextAlign.center,
-                  ),
+                  // Text(
+                  //   'Default Duration: ${currentAction.defaultDuration} seconds',
+                  //   textAlign: TextAlign.center,
+                  // ),
+                  // Text(
+                  //   'Pose Duration: ${pose.duration ?? currentAction.defaultDuration} seconds',
+                  //   textAlign: TextAlign.center,
+                  // ),
                 ],
               ),
             ),

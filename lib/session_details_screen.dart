@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yoga_instructor/models/available_yoga_actions.dart';
 
+import 'pose_widget.dart';
 import 'session_screen.dart';
 import 'models/yoga_session.dart';
 
@@ -65,12 +66,25 @@ class SessionDetailsScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   var pose = session.poses[index];
                   var action = AvailableYogaActions.getAction(pose.actionId);
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: AssetImage(action.image),
+                  return GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => Scaffold(
+                          appBar: AppBar(
+                            title: Text(action.name),
+                          ),
+                          body: YogaPoseWidget(pose: pose),
+                        ),
+                      );
+                    },
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: AssetImage(action.image),
+                      ),
+                      title: Text(action.name),
+                      subtitle: Text('Duration: ${pose.duration ?? action.defaultDuration} seconds'),
                     ),
-                    title: Text(action.name),
-                    subtitle: Text('Duration: ${pose.duration ?? action.defaultDuration} seconds'),
                   );
                 },
               ),

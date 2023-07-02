@@ -77,7 +77,7 @@ class AvailableYogaActions {
       text: 'Lie flat on your back with your legs...',
       defaultDuration: 15,
       image: 'assets/images/yogaActions/corpseVariationKneesBend.jpg',
-      sound: 'sounds/todo.mp3',
+      sound: 'sounds/yogaActions/corpsePoseVariationKneesBend.mp3',
     ),
     'deepLungeLeft': YogaAction(
       name: 'Deep Lunge to the Left',
