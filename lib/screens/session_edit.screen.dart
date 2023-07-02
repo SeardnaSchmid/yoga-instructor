@@ -1,7 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yoga_instructor/models/available_yoga_actions.dart';
 
+import '../models/yoga_action.dart';
 import '../models/yoga_pose.dart';
 import '../models/yoga_session.dart';
 import '../session.provider.dart';
@@ -19,6 +21,7 @@ class SessionEditScreenState extends State<SessionEditScreen> {
   late TextEditingController _nameController;
   late TextEditingController _descriptionController;
   final List<YogaPose> _poses = [];
+  late String _selectedAction;
 
   @override
   void initState() {
@@ -27,6 +30,7 @@ class SessionEditScreenState extends State<SessionEditScreen> {
     _descriptionController =
         TextEditingController(text: widget.session.description);
     _poses.addAll(widget.session.poses);
+    _selectedAction = AvailableYogaActions.getAction("allFoursPose").id;
   }
 
   @override
@@ -38,8 +42,7 @@ class SessionEditScreenState extends State<SessionEditScreen> {
 
   void _addPose() {
     setState(() {
-      _poses.add(YogaPose(AvailableYogaActions.getAction("allFoursPose").id,
-          duration: 10));
+      _poses.add(YogaPose(_selectedAction, duration: 10));
     });
   }
 
@@ -80,24 +83,56 @@ class SessionEditScreenState extends State<SessionEditScreen> {
                   style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
                 ),
                 Expanded(
-                  child: ListView.builder(
-                    itemCount: _poses.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        title: Text('Pose ${index + 1}'),
-                        subtitle:
-                            Text('Duration: ${_poses[index].duration} seconds'),
-                        trailing: IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () => _removePose(index),
-                        ),
-                      );
+                  child: ReorderableListView(
+                    onReorder: (oldIndex, newIndex) {
+                      setState(() {
+                        if (newIndex > oldIndex) {
+                          newIndex -= 1;
+                        }
+                        final pose = _poses.removeAt(oldIndex);
+                        _poses.insert(newIndex, pose);
+                      });
                     },
+                    dragStartBehavior: DragStartBehavior.down,
+                    children: _poses.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final pose = entry.value;
+                      return ListTile(
+                        key: ValueKey(pose),
+                        title: Text(
+                            'Pose ${index + 1} - ${AvailableYogaActions.getAction(pose.actionId).name}'),
+                        subtitle: Text('Duration: ${pose.duration} seconds'),
+                        trailing: GestureDetector(
+                          onTap: () => _removePose(index),
+                          child: const Icon(Icons.delete),
+                        ),
+                        leading: const Icon(Icons.drag_handle),
+                      );
+                    }).toList(),
                   ),
                 ),
-                ElevatedButton(
-                  onPressed: _addPose,
-                  child: const Text('Add Pose'),
+                Row(
+                  children: [
+                    DropdownButton<String>(
+                      value: _selectedAction,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _selectedAction = newValue!;
+                        });
+                      },
+                      items: AvailableYogaActions.actions.values
+                          .map<DropdownMenuItem<String>>((YogaAction action) {
+                        return DropdownMenuItem<String>(
+                          value: action.id,
+                          child: Text(action.name),
+                        );
+                      }).toList(),
+                    ),
+                    ElevatedButton(
+                      onPressed: _addPose,
+                      child: const Text('Add Pose'),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 16.0),
                 SizedBox(
