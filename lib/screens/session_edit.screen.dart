@@ -76,16 +76,23 @@ class SessionEditScreenState extends State<SessionEditScreen> {
               ),
               const SizedBox(height: 16.0),
               Expanded(
-                child: ListView(
-                  children: AvailableYogaActions.actions.values
-                      .map<Widget>((YogaAction action) {
+                child: ListView.builder(
+                  itemCount: AvailableYogaActions.actions.length,
+                  itemBuilder: (context, index) {
+                    final action =
+                        AvailableYogaActions.actions.values.toList()[index];
                     return ListTile(
                       title: Text(action.name),
+                      leading: Image.asset(
+                        action.image,
+                        width: 40,
+                        height: 40,
+                      ),
                       onTap: () {
                         Navigator.pop(context, action);
                       },
                     );
-                  }).toList(),
+                  },
                 ),
               ),
             ],
@@ -135,8 +142,8 @@ class SessionEditScreenState extends State<SessionEditScreen> {
                     itemCount: _poses.length,
                     itemBuilder: (context, index) {
                       final pose = _poses[index];
-                      final action = AvailableYogaActions.getAction(
-                          pose.actionId);
+                      final action =
+                          AvailableYogaActions.getAction(pose.actionId);
                       return Dismissible(
                         key: ValueKey(pose),
                         direction: DismissDirection.endToStart,
@@ -189,7 +196,9 @@ class SessionEditScreenState extends State<SessionEditScreen> {
               const SizedBox(height: 16.0),
               FloatingActionButton(
                 onPressed: () => _saveChanges(context, sessionProvider),
-                child: const Icon(Icons.save),
+                backgroundColor: Colors.green,
+                child:
+                    const Icon(Icons.save), // Set the background color to green
               ),
             ],
           ),

@@ -11,10 +11,12 @@ import '../widgets/yoga_pose.widget.dart';
 class SessionProgressionScreen extends StatefulWidget {
   final Session session;
 
-  const SessionProgressionScreen({Key? key, required this.session}) : super(key: key);
+  const SessionProgressionScreen({Key? key, required this.session})
+      : super(key: key);
 
   @override
-  SessionProgressionScreenState createState() => SessionProgressionScreenState();
+  SessionProgressionScreenState createState() =>
+      SessionProgressionScreenState();
 }
 
 class SessionProgressionScreenState extends State<SessionProgressionScreen> {

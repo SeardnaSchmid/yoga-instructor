@@ -40,15 +40,16 @@ class SessionsListScreen extends StatelessWidget {
           body: ListView.separated(
             itemCount: sessions.length,
             separatorBuilder: (context, index) =>
-            const Divider(color: Colors.grey),
+                const Divider(color: Colors.grey),
             itemBuilder: (context, index) {
               final session = sessions[index];
 
               int totalPoses = session.poses.length;
               int sessionDuration = 0;
               for (var pose in session.poses) {
-                sessionDuration +=
-                    pose.duration ?? AvailableYogaActions.getDefaultActionDuration(pose.actionId);
+                sessionDuration += pose.duration ??
+                    AvailableYogaActions.getDefaultActionDuration(
+                        pose.actionId);
               }
               int sessionMinutes = sessionDuration ~/ 60;
               int sessionSeconds = sessionDuration % 60;
@@ -63,7 +64,8 @@ class SessionsListScreen extends StatelessWidget {
                     context: context,
                     builder: (context) => AlertDialog(
                       title: const Text('Confirmation'),
-                      content: const Text('Are you sure you want to delete this session?'),
+                      content: const Text(
+                          'Are you sure you want to delete this session?'),
                       actions: [
                         TextButton(
                           onPressed: () => Navigator.pop(context, false),
@@ -72,7 +74,8 @@ class SessionsListScreen extends StatelessWidget {
                         ElevatedButton(
                           onPressed: () {
                             sessionProvider.removeSession(session.id);
-                            Navigator.pop(context, true); // Close the dialog and return true
+                            Navigator.pop(context,
+                                true); // Close the dialog and return true
                           },
                           child: const Text('Delete'),
                         ),
@@ -129,7 +132,8 @@ class SessionsListScreen extends StatelessWidget {
                 context: context,
                 builder: (context) => AlertDialog(
                   title: const Text('Confirmation'),
-                  content: const Text('Are you sure you want to add a new session?'),
+                  content:
+                      const Text('Are you sure you want to add a new session?'),
                   actions: [
                     TextButton(
                       onPressed: () => Navigator.pop(context),
